@@ -790,7 +790,7 @@ class MarkdownExtra extends \Michelf\Markdown {
 			$url = $this->urls[$link_id];
 			$url = $this->encodeURLAttribute($url);
 			
-			$result = "<a href=\"$url\"";
+			$result = "<a target=\"_blank\" href=\"$url\"";
 			if ( isset( $this->titles[$link_id] ) ) {
 				$title = $this->titles[$link_id];
 				$title = $this->encodeAttribute($title);
@@ -823,7 +823,7 @@ class MarkdownExtra extends \Michelf\Markdown {
 
 		$url = $this->encodeURLAttribute($url);
 
-		$result = "<a href=\"$url\"";
+		$result = "<a target=\"_blank\" href=\"$url\"";
 		if (isset($title)) {
 			$title = $this->encodeAttribute($title);
 			$result .=  " title=\"$title\"";
@@ -1489,9 +1489,9 @@ class MarkdownExtra extends \Michelf\Markdown {
 				$note_id = $this->encodeAttribute($note_id);
 
 				# Prepare backlink, multiple backlinks if multiple references
-				$backlink = "<a href=\"#fnref:$note_id\"$attr>&#8617;</a>";
+				$backlink = "<a target=\"_blank\" href=\"#fnref:$note_id\"$attr>&#8617;</a>";
 				for ($ref_num = 2; $ref_num <= $ref_count; ++$ref_num) {
-					$backlink .= " <a href=\"#fnref$ref_num:$note_id\"$attr>&#8617;</a>";
+					$backlink .= " <a target=\"_blank\" href=\"#fnref$ref_num:$note_id\"$attr>&#8617;</a>";
 				}
 				# Add backlink to last paragraph; create new paragraph if needed.
 				if (preg_match('{</p>$}', $footnote)) {
@@ -1545,7 +1545,7 @@ class MarkdownExtra extends \Michelf\Markdown {
 			
 			return
 				"<sup id=\"fnref$ref_count_mark:$node_id\">".
-				"<a href=\"#fn:$node_id\"$attr>$num</a>".
+				"<a target=\"_blank\" href=\"#fn:$node_id\"$attr>$num</a>".
 				"</sup>";
 		}
 		
